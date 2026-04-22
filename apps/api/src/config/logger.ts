@@ -32,7 +32,7 @@ export const logger = winston.createLogger({
     winston.format.json(),
   ),
   defaultMeta: {
-    service: "primetrade-api",
+    service: "primeguard-api",
     environment: env.NODE_ENV,
   },
   transports: [

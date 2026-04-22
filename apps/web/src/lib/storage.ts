@@ -1,5 +1,5 @@
-const ACCESS_TOKEN_KEY = "primetrade_access_token";
-const USER_KEY = "primetrade_user";
+const ACCESS_TOKEN_KEY = "primeguard_access_token";
+const USER_KEY = "primeguard_user";
 
 export const storage = {
   getAccessToken(): string | null {

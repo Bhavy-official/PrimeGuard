@@ -15,7 +15,7 @@ export const AppShell = ({ children }: PropsWithChildren): ReactNode => {
               {formatRelativeGreeting()}
             </p>
             <h1 className="mt-2 font-display text-3xl font-extrabold text-white">
-              PrimeTrade Control Deck
+              PrimeGuard Control Deck
             </h1>
             <p className="mt-2 max-w-2xl text-sm text-slate-300">
               Stay on top of your execution pipeline with clean task tracking, fast filtering,

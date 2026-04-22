@@ -2,7 +2,7 @@
   "name": "api",
   "version": "1.0.0",
   "private": true,
-  "description": "Backend API for PrimeTrade.ai",
+  "description": "Backend API for PrimeGuard",
   "main": "dist/server.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",

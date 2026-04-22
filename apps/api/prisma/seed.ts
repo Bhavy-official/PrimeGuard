@@ -13,7 +13,7 @@ const seed = async () => {
   const passwordHash = await bcrypt.hash("Admin@12345", 12);
 
   const admin = await prisma.user.upsert({
-    where: { email: "admin@primetrade.ai" },
+    where: { email: "admin@primeguard" },
     update: {
       deletedAt: null,
       firstName: "Prime",
@@ -23,7 +23,7 @@ const seed = async () => {
       role: Role.ADMIN,
     },
     create: {
-      email: "admin@primetrade.ai",
+      email: "admin@primeguard",
       firstName: "Prime",
       lastName: "Admin",
       password: passwordHash,
@@ -32,7 +32,7 @@ const seed = async () => {
   });
 
   const user = await prisma.user.upsert({
-    where: { email: "user@primetrade.ai" },
+    where: { email: "user@primeguard" },
     update: {
       deletedAt: null,
       firstName: "Demo",
@@ -42,7 +42,7 @@ const seed = async () => {
       role: Role.USER,
     },
     create: {
-      email: "user@primetrade.ai",
+      email: "user@primeguard",
       firstName: "Demo",
       lastName: "User",
       password: passwordHash,

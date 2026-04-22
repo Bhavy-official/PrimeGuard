@@ -168,7 +168,7 @@ const openApiDefinition = {
                   success: true,
                   message: "API is healthy.",
                   data: {
-                    service: "PrimeTrade API",
+                    service: "PrimeGuard API",
                     environment: "development",
                     timestamp: "2026-04-21T12:00:00.000Z",
                     uptime: 240.21,

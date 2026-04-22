@@ -22,7 +22,7 @@ export const AuthFormShell = ({
       <div className="grid w-full max-w-5xl overflow-hidden rounded-[2rem] border border-white/10 bg-slate-950/70 shadow-panel backdrop-blur lg:grid-cols-[1.15fr_0.85fr]">
         <section className="hidden bg-gradient-to-br from-brand-600/30 via-slate-950 to-sky-950 p-10 lg:flex lg:flex-col lg:justify-between">
           <div>
-            <p className="text-sm uppercase tracking-[0.32em] text-brand-200">PrimeTrade.ai</p>
+            <p className="text-sm uppercase tracking-[0.32em] text-brand-200">PrimeGuard</p>
             <h1 className="mt-5 font-display text-5xl font-extrabold leading-tight text-white">
               Build momentum with a secure execution workspace.
             </h1>
