@@ -1,0 +1,26 @@
+{
+  "name": "primetrade-ai",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Production-grade full-stack task management platform with authentication, RBAC, and clean architecture.",
+  "workspaces": [
+    "apps/api",
+    "apps/web"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev --workspace api\" \"npm run dev --workspace web\"",
+    "build": "npm run build --workspace api && npm run build --workspace web",
+    "lint": "npm run lint --workspace api && npm run lint --workspace web",
+    "format": "npm run format --workspace api && npm run format --workspace web"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  },
+  "dependencies": {
+    "react-datepicker": "^9.1.0"
+  }
+}

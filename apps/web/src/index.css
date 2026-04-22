@@ -1,0 +1,83 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap");
+@import "react-datepicker/dist/react-datepicker.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color: #e2e8f0;
+    background-color: #020617;
+    font-family: "Manrope", ui-sans-serif, system-ui;
+  }
+
+  * {
+    @apply border-slate-800;
+  }
+
+  body {
+    @apply min-h-screen bg-slate-950 text-slate-100 antialiased;
+    background-image:
+      radial-gradient(circle at top left, rgba(53, 112, 255, 0.2), transparent 30%),
+      radial-gradient(circle at bottom right, rgba(14, 165, 233, 0.14), transparent 28%);
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+}
+
+@layer components {
+  .panel {
+    @apply rounded-3xl border border-white/10 bg-slate-900/70 shadow-panel backdrop-blur;
+  }
+
+  .input {
+    @apply w-full rounded-2xl border border-white/10 bg-slate-950/70 px-4 py-3 text-sm text-slate-100 outline-none transition placeholder:text-slate-500 focus:border-brand-400 focus:ring-2 focus:ring-brand-500/30;
+  }
+
+  .label {
+    @apply mb-2 block text-sm font-semibold text-slate-200;
+  }
+
+  .button-primary {
+    @apply inline-flex items-center justify-center rounded-2xl bg-brand-500 px-5 py-3 text-sm font-bold text-white transition hover:bg-brand-400 disabled:cursor-not-allowed disabled:opacity-60;
+  }
+
+  .button-secondary {
+    @apply inline-flex items-center justify-center rounded-2xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-semibold text-slate-100 transition hover:bg-white/10;
+  }
+
+  .badge {
+    @apply inline-flex items-center rounded-full px-3 py-1 text-xs font-bold uppercase tracking-[0.18em];
+  }
+}
+
+
+.react-datepicker {
+  @apply bg-slate-900 border border-white/10 text-slate-100 rounded-2xl;
+}
+
+.react-datepicker__header {
+  @apply bg-slate-900 border-b border-white/10;
+}
+
+.react-datepicker__current-month,
+.react-datepicker__day-name {
+  @apply text-slate-200;
+}
+
+.react-datepicker__day {
+  @apply text-slate-300 hover:bg-brand-500/30 rounded-lg;
+}
+
+.react-datepicker__day--selected {
+  @apply bg-brand-500 text-white;
+}
+
+.react-datepicker__day--today {
+  @apply border border-brand-400;
+}

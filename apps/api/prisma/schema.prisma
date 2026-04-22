@@ -1,0 +1,122 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum TaskStatus {
+  TODO
+  IN_PROGRESS
+  COMPLETED
+}
+
+enum TaskPriority {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+enum ActivityAction {
+  USER_REGISTERED
+  USER_LOGGED_IN
+  USER_LOGGED_OUT
+  TOKEN_REFRESHED
+  PROFILE_UPDATED
+  PASSWORD_CHANGED
+  TASK_CREATED
+  TASK_UPDATED
+  TASK_DELETED
+  USER_LIST_VIEWED
+}
+
+model User {
+  id             String         @id @default(uuid()) @db.Uuid
+  email          String         @unique @db.VarChar(255)
+  password       String         @db.VarChar(255)
+  firstName      String         @db.VarChar(100)
+  lastName       String         @db.VarChar(100)
+  role           Role           @default(USER)
+  isActive       Boolean        @default(true)
+  lastLoginAt    DateTime?
+  deletedAt      DateTime?
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+  tasks          Task[]
+  refreshTokens  RefreshToken[]
+  activityLogs   ActivityLog[]
+
+  @@index([role, deletedAt])
+  @@index([email, deletedAt])
+  @@map("users")
+}
+
+model Task {
+  id           String        @id @default(uuid()) @db.Uuid
+  title        String        @db.VarChar(200)
+  description  String?       @db.Text
+  status       TaskStatus    @default(TODO)
+  priority     TaskPriority  @default(MEDIUM)
+  dueDate      DateTime?
+  deletedAt    DateTime?
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  ownerId      String        @db.Uuid
+  owner        User          @relation(fields: [ownerId], references: [id], onDelete: Restrict)
+  activityLogs ActivityLog[]
+
+  // Optimized for owner-scoped dashboard listings with status sorting/filtering.
+  @@index([ownerId, deletedAt, status, createdAt(sort: Desc)])
+  @@index([ownerId, priority, deletedAt])
+  @@index([dueDate, deletedAt])
+  @@map("tasks")
+}
+
+model RefreshToken {
+  id           String    @id @default(uuid()) @db.Uuid
+  tokenHash    String    @unique @db.VarChar(255)
+  expiresAt    DateTime
+  issuedAt     DateTime  @default(now())
+  revokedAt    DateTime?
+  replacedById String?   @db.Uuid
+  userAgent    String?   @db.VarChar(255)
+  ipAddress    String?   @db.VarChar(64)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  userId       String    @db.Uuid
+  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, revokedAt])
+  @@index([expiresAt])
+  @@index([replacedById])
+  @@map("refresh_tokens")
+}
+
+model ActivityLog {
+  id          String         @id @default(uuid()) @db.Uuid
+  action      ActivityAction
+  entityType  String?        @db.VarChar(100)
+  entityId    String?        @db.Uuid
+  description String?        @db.Text
+  metadata    Json?
+  ipAddress   String?        @db.VarChar(64)
+  userAgent   String?        @db.VarChar(255)
+  createdAt   DateTime       @default(now())
+  userId      String         @db.Uuid
+  taskId      String?        @db.Uuid
+  user        User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  task        Task?          @relation(fields: [taskId], references: [id], onDelete: SetNull)
+
+  @@index([userId, createdAt(sort: Desc)])
+  @@index([action, createdAt(sort: Desc)])
+  @@index([entityType, entityId])
+  @@index([taskId, createdAt(sort: Desc)])
+  @@map("activity_logs")
+}

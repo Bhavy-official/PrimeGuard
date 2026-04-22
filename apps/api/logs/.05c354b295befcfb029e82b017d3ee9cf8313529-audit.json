@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "D:\\internship_task\\PrimeTrade.ai\\apps\\api\\logs\\.05c354b295befcfb029e82b017d3ee9cf8313529-audit.json",
+    "files": [
+        {
+            "date": 1776774882910,
+            "name": "D:\\internship_task\\PrimeTrade.ai\\apps\\api\\logs\\application-2026-04-21.log",
+            "hash": "c6bc9eaf1043f71e770303d487e71f9a72bd8758b272df5ae8c9ad95cd842a44"
+        }
+    ],
+    "hashType": "sha256"
+}
